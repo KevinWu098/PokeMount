@@ -1,7 +1,7 @@
 "use client";
 
 import { SearchBarProps } from '@/types';
-import SearchManufacturer from './SearchManufacturer'
+import SearchPokemonTypes from './SearchPokemonTypes'
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react'
@@ -37,11 +37,11 @@ const SearchBar = ({ setManufacturer, setModel }: SearchBarProps) => {
     return (
         <form className='searchbar' onSubmit={handleSearch}>
           <div className='searchbar__item'>
-            <SearchManufacturer
+            <SearchPokemonTypes
               selected={searchManufacturer}
               setSelected={setSearchManufacturer}
             />
-            <SearchButton otherClasses='sm:hidden' />
+            <SearchButton otherClasses='sm:hidden pl-4' />
           </div>
           <div className='searchbar__item'>
             <Image
@@ -57,11 +57,11 @@ const SearchBar = ({ setManufacturer, setModel }: SearchBarProps) => {
               value={searchModel}
               onChange={(e) => setSearchModel(e.target.value)}
               placeholder='Generation...'
-              className='searchbar__input'
+              className='searchbar__input sm:border-s-2'
             />
-            <SearchButton otherClasses='sm:hidden' />
+            <SearchButton otherClasses='sm:hidden pl-4' />
           </div>
-          <SearchButton otherClasses='max-sm:hidden py-1' />
+          <SearchButton otherClasses='max-sm:hidden py-1 pl-4' />
         </form>
       );
 }

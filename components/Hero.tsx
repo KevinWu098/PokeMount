@@ -26,7 +26,7 @@ const Hero = () => {
 
         <CustomButton 
           title="Explore Mounts"
-          containerStyles="bg-red-600 text-white rounded-full mt-10"
+          containerStyles="bg-red-600 text-white rounded-full mt-10 drop-shadow-md"
           handleClick={handleScroll}
         />
       </div>

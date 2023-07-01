@@ -20,7 +20,7 @@ const ShowMore = ({ pageNumber, isNext, setLimit}: ShowMoreProps) => {
                 <CustomButton 
                     title="Show More"
                     btnType="button"
-                    containerStyles="bg-red-600 rounded-full text-white"
+                    containerStyles="bg-red-600 rounded-full text-white drop-shadow-md"
                     handleClick={handleNavigation}
                 />
             )}

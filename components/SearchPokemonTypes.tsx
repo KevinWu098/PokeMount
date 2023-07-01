@@ -2,16 +2,21 @@
 
 import { useState, Fragment } from 'react';
 import Image from 'next/image';
-import { SearchManufacturerProps } from '@/types'
+// import { SearchManufacturerProps } from '@/types'
 import { Combobox, Transition } from '@headlessui/react'
-import { manufacturers } from '@/constants';
+import { pokemonTypes } from '@/constants';
 
-const SearchManufacturer = ({ selected, setSelected }: SearchManufacturerProps) => {
+interface SearchPokemonTypesProps {
+    selected: string;
+    setSelected: (selected: string) => void;
+}
+
+const SearchPokemonTypes = ({ selected, setSelected }: SearchPokemonTypesProps) => {
     const [query, setQuery] = useState('')
 
-    const filteredManufacturers = query === ""
-    ? manufacturers
-    : manufacturers.filter((item) => (
+    const filteredPokemonTypes = query === ""
+    ? pokemonTypes
+    : pokemonTypes.filter((item) => (
         item.toLowerCase()
         .replace(/\s+/g, "")
         .includes(query.toLowerCase().replace(/\s+/g, ""))
@@ -45,13 +50,13 @@ const SearchManufacturer = ({ selected, setSelected }: SearchManufacturerProps) 
                         afterLeave={() => setQuery('')}
                     >
                         <Combobox.Options>
-                            {filteredManufacturers.length === 0 && query !== ""
+                            {filteredPokemonTypes.length === 0 && query !== ""
                                 ? (                                
                                     <div className="search-manufacturer__option">
                                        Nothing Found
                                     </div>
                                 ): (
-                                    filteredManufacturers.map((item) => (
+                                    filteredPokemonTypes.map((item) => (
                                         <Combobox.Option
                                             key={item}
                                             className={({active}) => `relative search-manufacturer__option ${active ? 'bg-primary-blue text-white' : 'text-gray-900'}`}
@@ -79,4 +84,4 @@ const SearchManufacturer = ({ selected, setSelected }: SearchManufacturerProps) 
     )
 }
 
-export default SearchManufacturer
+export default SearchPokemonTypes

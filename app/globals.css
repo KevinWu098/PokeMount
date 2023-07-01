@@ -77,11 +77,11 @@
 }
 
 .home__filters {
-  @apply mt-12 w-full flex-between items-center flex-wrap gap-5;
+  @apply mt-6 w-full flex-between items-center flex-wrap gap-5;
 }
 
 .home__filter-container {
-  @apply flex justify-start flex-wrap items-center gap-2;
+  @apply flex justify-start flex-wrap items-center gap-2 pt-4;
 }
 
 .home__cars-wrapper {

@@ -52,7 +52,7 @@ export default function Home() {
           <h1 className='text-4xl font-extrabold'>
             Pokè Mounts
           </h1>
-          <p>Explore mounts that'll elevate your Pokèjourney</p>
+          <p>Discover mounts that'll accelerate your Pokèjourney!</p>
         </div>
 
         <div className='home__filters'>
@@ -60,11 +60,11 @@ export default function Home() {
             setManufacturer={setManufacturer}
             setModel={setModel}
           />
+        </div>
 
-          <div className='home__filter-container'>
-            <CustomFilter title="Mount Types" options={fuels} setFilter={setFuel}/>
-            {/* <CustomFilter title="year" options={yearsOfProduction} setFilter={setYear}/> */}
-          </div>
+        <div className='home__filter-container'>
+          <CustomFilter title="Mount Types" options={fuels} setFilter={setFuel}/>
+          {/* <CustomFilter title="year" options={yearsOfProduction} setFilter={setYear}/> */}
         </div>
 
         {allCars.length > 0 ? (

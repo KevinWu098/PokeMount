@@ -50,9 +50,9 @@ export default function Home() {
       <div className="mt-12 padding-x padding-y max-width" id='discover'>
         <div className="home__text-container">
           <h1 className='text-4xl font-extrabold'>
-            Car Catalogue
+            Pokè Mounts
           </h1>
-          <p>Explore the cars you might like</p>
+          <p>Explore mounts that'll elevate your Pokèjourney</p>
         </div>
 
         <div className='home__filters'>
@@ -62,24 +62,24 @@ export default function Home() {
           />
 
           <div className='home__filter-container'>
-            <CustomFilter title="fuel" options={fuels} setFilter={setFuel}/>
-            <CustomFilter title="year" options={yearsOfProduction} setFilter={setYear}/>
+            <CustomFilter title="Mount Types" options={fuels} setFilter={setFuel}/>
+            {/* <CustomFilter title="year" options={yearsOfProduction} setFilter={setYear}/> */}
           </div>
         </div>
 
         {allCars.length > 0 ? (
           <section>
             <div className='home__cars-wrapper'>
-              {allCars?.map((car, index) => (
-                <CarCard key={`car-${index}`} car={car} />
+              {allCars?.map((pokemon, index) => (
+                <CarCard key={`pokemon-${index}`} car={pokemon} />
               ))}
             </div>
 
             {loading && (
-              <div>
+              <div className='flex justify-center pt-10'>
                 <Image 
-                  src="/loader.svg"
-                  alt="loader"
+                  src="/loading.gif"
+                  alt="loading"
                   width={50}
                   height={50}
                   className='object-contain'

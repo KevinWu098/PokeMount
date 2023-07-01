@@ -74,10 +74,10 @@ export const manufacturers = [
     {
       title: "About",
       links: [
-        { title: "How it works", url: "/" },
+        { title: "How it Works", url: "/" },
         { title: "Featured", url: "/" },
         { title: "Partnership", url: "/" },
-        { title: "Bussiness Relation", url: "/" },
+        { title: "Business Relations", url: "/" },
       ],
     },
     {
@@ -86,7 +86,7 @@ export const manufacturers = [
         { title: "Events", url: "/" },
         { title: "Blog", url: "/" },
         { title: "Podcast", url: "/" },
-        { title: "Invite a friend", url: "/" },
+        { title: "Invite a Friend", url: "/" },
       ],
     },
     {

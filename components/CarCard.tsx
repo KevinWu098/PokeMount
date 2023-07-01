@@ -28,7 +28,13 @@ const CarCard = ({ car }: CarCardProps) => {
 
             <p className="flex mt-6 text-[32px] font-extrabold">
                 <span className="self-start text-[14px] font-semibold">
-                    $
+                    <Image 
+                        src='/pokedollar.png'
+                        alt="Pokèdollar"
+                        width={12}
+                        height={12}
+                        className="object-contain"
+                    />
                 </span>
                 {carRent}
                 <span className="self-end text-[14px] font-medium">
@@ -42,6 +48,7 @@ const CarCard = ({ car }: CarCardProps) => {
 
             <div className="relative flex w-full mt-2">
                 <div className="flex group-hover:invisible w-full justify-between text-gray">
+                    {/* Mount Type, Type, Gen */}
                     <div className="flex flex-col justify-center items-center gap-2">
                         <Image src="/steering-wheel.svg" alt="steering wheel" width={20} height={20} />
                         <p className="text-[14px]">
@@ -65,7 +72,7 @@ const CarCard = ({ car }: CarCardProps) => {
                 <div className="car-card__btn-container">
                     <CustomButton 
                         title="View More"
-                        containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
+                        containerStyles="w-full py-[16px] rounded-full bg-red-600"
                         textStyles="text-white text-[14px] leading-[17px] font-bold"
                         rightIcon="/right-arrow.svg"
                         handleClick={() => setIsOpen(true)}

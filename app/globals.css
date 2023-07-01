@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .hue-rotate--232 {
+    --tw-hue-rotate: -232deg;
+    filter: hue-rotate(var(--tw-hue-rotate));
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -59,7 +66,7 @@
 }
 
 .hero__image-overlay {
-  @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-screen h-[590px] overflow-hidden;
+  @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 hue-rotate--232 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-screen h-[590px] overflow-hidden;
 }
 /* END: Hero styles */
 
@@ -142,7 +149,7 @@
 }
 
 .car-details__main-image {
-  @apply relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg;
+  @apply relative w-full h-40 bg-pattern hue-rotate--232 bg-cover bg-center rounded-lg;
 }
 /* END: Car Details styles */
 
@@ -188,7 +195,7 @@
 
 /* START: searchbar styles */
 .searchbar {
-  @apply flex items-center justify-start max-sm:flex-col w-full relative max-sm:gap-4 max-w-3xl;
+  @apply flex items-start justify-end max-sm:flex-col w-full relative max-sm:gap-4 max-w-3xl;
 }
 
 .searchbar__item {

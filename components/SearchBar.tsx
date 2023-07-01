@@ -45,23 +45,23 @@ const SearchBar = ({ setManufacturer, setModel }: SearchBarProps) => {
           </div>
           <div className='searchbar__item'>
             <Image
-              src='/model-icon.png'
+              src='/pokedex-icon.png'
               width={25}
               height={25}
-              className='absolute w-[20px] h-[20px] ml-4'
-              alt='car model'
+              className='absolute w-[20px] h-[20px] ml-4 grayscale-[100%]'
+              alt='pokedex icon'
             />
             <input
               type='text'
               name='model'
               value={searchModel}
               onChange={(e) => setSearchModel(e.target.value)}
-              placeholder='Tiguan...'
+              placeholder='Generation...'
               className='searchbar__input'
             />
             <SearchButton otherClasses='sm:hidden' />
           </div>
-          <SearchButton otherClasses='max-sm:hidden' />
+          <SearchButton otherClasses='max-sm:hidden py-1' />
         </form>
       );
 }

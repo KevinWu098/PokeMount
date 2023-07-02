@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react'
 import { PokemonCardProps } from './PokemonCard';
 import { generatePokemonImage } from '@/utils';
+import CustomButton from './CustomButton';
 
 interface PokemonDetailsProps {
     isOpen: boolean;
@@ -61,6 +62,14 @@ const PokemonDetails = ({ isOpen, closeModal, props, pokemonID, pokemonName }: P
                                             </div>
                                         ))}
                                     </div>
+                                </div>
+
+                                <div className="w-full flex-center gap-5">
+                                    <CustomButton 
+                                        title="Buy or Rent"
+                                        btnType="button"
+                                        containerStyles="bg-red-600 rounded-full text-white drop-shadow-md hover:cursor-not-allowed"
+                                    />
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>

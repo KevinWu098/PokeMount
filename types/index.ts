@@ -1,17 +1,17 @@
 import { MouseEventHandler } from "react";
 
 export interface SearchBarProps {
-  setType: (manufacturer: string) => void;
+  setType: (type: string) => void;
   // setMount: (model: string) => void;
 }
 
-export interface FilterProps {
-  manufacturer?: string;
-  year?: number;
-  model?: string;
-  limit?: number;
-  fuel?: string;
-}
+// export interface FilterProps {
+//   manufacturer?: string;
+//   year?: number;
+//   model?: string;
+//   limit?: number;
+//   fuel?: string;
+// }
 
 export interface CustomButtonProps {
   isDisabled?: boolean;
@@ -31,7 +31,7 @@ export interface OptionProps {
 export interface CustomFilterProps {
   title: string;
   options: OptionProps[];
-  setFilter: (selected: any) => void;
+  setMount: (selected: any) => void;
 }
 
 export interface ShowMoreProps {

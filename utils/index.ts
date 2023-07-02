@@ -22,7 +22,7 @@ import { specificMountTypes } from "@/constants";
 // }
 
 interface FilterPokemonProps {
-    type?: string;
+    type: string;
     // generation?: number;
     mount: string;
 }
@@ -31,14 +31,15 @@ export async function fetchPokemon(props: FilterPokemonProps) {
     const { type, mount } = props
 
     const response = await fetch(
-        `https://pokeapi.co/api/v2/type/${type}`
+        `https://pokeapi.co/api/v2/type/${type.toLowerCase()}`
     )
 
     const result = await response.json()
+    console.log(result)
     const filteredNames = result['pokemon']
                             .map((pokemon: any) => pokemon.pokemon.name)
                             .filter((pokemon: string) => {
-                                return specificMountTypes[mount].includes(pokemon)
+                                return specificMountTypes[mount.toLowerCase()].includes(pokemon)
                             })
     const filteredIDs = result['pokemon']
                             .filter((pokemon: any) => {
@@ -48,8 +49,6 @@ export async function fetchPokemon(props: FilterPokemonProps) {
                             .map((url: string) => url.match(/\/(\d+)\/$/)?.[1] ?? "")
     return [filteredNames, filteredIDs]
 }
-
-// fetchPokemon({type: 'ground', mount: 'land'})
 
 export const generatePokemonImage = (id: number) => {
     const url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
@@ -61,26 +60,26 @@ export const generatePokemonOfficialImage = (id: number) => {
     return url
 }
 
-export const calculateCarRent = (city_mpg: number, year: number) => {
-    const basePricePerDay = 50; // Base rental price per day in dollars
-    const mileageFactor = 0.1; // Additional rate per mile driven
-    const ageFactor = 0.05; // Additional rate per year of vehicle age
+// export const calculateCarRent = (city_mpg: number, year: number) => {
+//     const basePricePerDay = 50; // Base rental price per day in dollars
+//     const mileageFactor = 0.1; // Additional rate per mile driven
+//     const ageFactor = 0.05; // Additional rate per year of vehicle age
   
-    // Calculate additional rate based on mileage and age
-    const mileageRate = city_mpg * mileageFactor;
-    const ageRate = (new Date().getFullYear() - year) * ageFactor;
+//     // Calculate additional rate based on mileage and age
+//     const mileageRate = city_mpg * mileageFactor;
+//     const ageRate = (new Date().getFullYear() - year) * ageFactor;
   
-    // Calculate total rental rate per day
-    const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
+//     // Calculate total rental rate per day
+//     const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
   
-    return rentalRatePerDay.toFixed(0);
-  };
+//     return rentalRatePerDay.toFixed(0);
+//   };
 
-  export const updateSearchParams = (type: string, value: string) => {
+export const updateSearchParams = (type: string, value: string) => {
     const searchParams = new URLSearchParams(window.location.search)
     searchParams.set(type, value)
-    
+
     const newPathname = `${window.location.pathname}?${searchParams.toString()}`
 
     return newPathname
-  }
+}

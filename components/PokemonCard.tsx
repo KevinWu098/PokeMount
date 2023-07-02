@@ -29,19 +29,19 @@ const PokemonCard = (props: PokemonCardProps) => {
                     <Image 
                         src='/pokedollar.png'
                         alt="Pokèdollar"
-                        width={12}
                         height={12}
-                        className="object-contain"
+                        width={12}
+                        className="object-contain width: auto"
                     />
                 </span>
                 1000
                 <span className="self-end text-[14px] font-medium">
-                    /day
+                    /day    
                 </span>
             </p>
 
             <div className="relative w-full h-40 my-3 object-contain">
-                <Image src={generatePokemonOfficialImage(pokemonID)} alt="pokemon model" fill priority className="object-contain" />
+                <Image src={generatePokemonOfficialImage(pokemonID)} alt="pokemon model" fill sizes="(max-width: 768px) 100vww" priority className="object-contain" />
             </div>
 
             <div className="relative flex w-full mt-2">

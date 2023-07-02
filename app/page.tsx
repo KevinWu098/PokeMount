@@ -15,14 +15,14 @@ export default function Home() {
   const [type, setType] = useState('')
   const [mount, setMount] = useState('')
 
-  const [limit, setLimit] = useState(10)
+  // const [limit, setLimit] = useState(10)
 
   const getPokemon = async () => {
     setLoading(true);
 
-    try {    
+    try {
       const result = await fetchPokemon({
-        type: type || 'ground',
+        type: type || 'normal',
         mount: mount || 'land',
       });
 
@@ -53,12 +53,12 @@ export default function Home() {
         <div className='home__filters'>
           <SearchBar 
             setType={setType}
-            // setModel={setModel}
+            // setMount={setMount}
           />
         </div>
 
         <div className='home__filter-container'>
-          <CustomFilter title="Mount Types" options={filterMountTypes} setFilter={setMount}/>
+          <CustomFilter title="Mount Types" options={filterMountTypes} setMount={setMount}/>
         </div>
 
         {allPokemon.length > 0 ? (

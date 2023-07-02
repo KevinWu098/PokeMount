@@ -1,20 +1,18 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { CarProps } from "@/types";
 import CustomButton from "./CustomButton";
-import { calculateCarRent } from "@/utils";
-import CarDetails from "./CarDetails";
+import { generatePokemonOfficialImage } from "@/utils";
+import PokemonDetails from "./PokemonDetails";
 
-interface CarCardProps {
-    car: CarProps;
+export interface PokemonCardProps {
+    pokemonName: string;
+    pokemonID: number;
 }
 
-const CarCard = ({ car }: CarCardProps) => {
-    const { city_mpg, year, make, model, transmission, drive } = car
-
-    const carRent = calculateCarRent(city_mpg, year);
+const PokemonCard = (props: PokemonCardProps) => {
+    const { pokemonName, pokemonID } = props
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -22,7 +20,7 @@ const CarCard = ({ car }: CarCardProps) => {
         <div className="car-card group">
             <div className="car-card__content">
                 <h2 className="car-card__content-title">
-                    {make} {model}
+                    {pokemonName}
                 </h2>
             </div>
 
@@ -36,19 +34,19 @@ const CarCard = ({ car }: CarCardProps) => {
                         className="object-contain"
                     />
                 </span>
-                {carRent}
+                1000
                 <span className="self-end text-[14px] font-medium">
                     /day
                 </span>
             </p>
 
             <div className="relative w-full h-40 my-3 object-contain">
-                <Image src="/hero.png" alt="car model" fill priority className="object-contain" />
+                <Image src={generatePokemonOfficialImage(pokemonID)} alt="pokemon model" fill priority className="object-contain" />
             </div>
 
             <div className="relative flex w-full mt-2">
-                <div className="flex group-hover:invisible w-full justify-between text-gray">
-                    {/* Mount Type, Type, Gen */}
+                {/* <div className="flex group-hover:invisible w-full justify-between text-gray">
+                    Mount Type, Type, Gen
                     <div className="flex flex-col justify-center items-center gap-2">
                         <Image src="/steering-wheel.svg" alt="steering wheel" width={20} height={20} />
                         <p className="text-[14px]">
@@ -67,7 +65,7 @@ const CarCard = ({ car }: CarCardProps) => {
                             {city_mpg} MPG
                         </p>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="car-card__btn-container">
                     <CustomButton 
@@ -80,9 +78,9 @@ const CarCard = ({ car }: CarCardProps) => {
                 </div>
             </div>
 
-            <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car} />
+            <PokemonDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} props={props} pokemonID={pokemonID} pokemonName={pokemonName} />
         </div>
     )
 }
 
-export default CarCard
+export default PokemonCard

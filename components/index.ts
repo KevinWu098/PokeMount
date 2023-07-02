@@ -5,8 +5,8 @@ import Footer from "./Footer";
 import SearchBar from "./SearchBar";
 import CustomFilter from "./CustomFilter";
 import SearchPokemonTypes from "./SearchPokemonTypes";
-import CarCard from "./CarCard";
-import CarDetails from "./CarDetails";
+import PokemonCard from "./PokemonCard";
+import PokemonDetails from "./PokemonDetails";
 import ShowMore from "./ShowMore";
 
 export {
@@ -16,8 +16,8 @@ export {
     Footer,
     SearchBar,
     CustomFilter,
-    SearchPokemonTypes as SearchManufacturer,
-    CarCard,
-    CarDetails,
+    SearchPokemonTypes,
+    PokemonCard,
+    PokemonDetails as CarDetails,
     ShowMore,
 }

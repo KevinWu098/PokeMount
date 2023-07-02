@@ -18,32 +18,32 @@ const SearchButton = ({otherClasses}: {otherClasses: string}) => (
     </button>
 )
 
-const SearchBar = ({ setManufacturer, setModel }: SearchBarProps) => {
-    const [searchManufacturer, setSearchManufacturer] = useState('')
-    const [searchModel, setSearchModel] = useState('')
+const SearchBar = ({ setType }: SearchBarProps) => {
+    const [searchType, setSearchType] = useState('')
+    // const [searchMount, setSearchMount] = useState('')
     const router = useRouter()
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if(searchManufacturer === '' && searchModel === ''){
+        if(searchType === ''){
             return alert('Please fill in the search bar')
         }
 
-        setModel(searchModel)
-        setManufacturer(searchManufacturer)
+        setType(searchType)
+        // setMount(searchMount)
     }
 
     return (
         <form className='searchbar' onSubmit={handleSearch}>
-          <div className='searchbar__item'>
+        <div className='searchbar__item'>
             <SearchPokemonTypes
-              selected={searchManufacturer}
-              setSelected={setSearchManufacturer}
+              selected={searchType}
+              setSelected={setSearchType}
             />
             <SearchButton otherClasses='sm:hidden pl-4' />
           </div>
-          <div className='searchbar__item'>
+          {/* <div className='searchbar__item'>
             <Image
               src='/pokedex-icon.png'
               width={25}
@@ -52,15 +52,15 @@ const SearchBar = ({ setManufacturer, setModel }: SearchBarProps) => {
               alt='pokedex icon'
             />
             <input
-              type='text'
+              type='number'
               name='model'
               value={searchModel}
               onChange={(e) => setSearchModel(e.target.value)}
-              placeholder='Generation...'
+              placeholder='3...'
               className='searchbar__input sm:border-s-2'
             />
             <SearchButton otherClasses='sm:hidden pl-4' />
-          </div>
+          </div> */}
           <SearchButton otherClasses='max-sm:hidden py-1 pl-4' />
         </form>
       );

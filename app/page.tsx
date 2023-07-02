@@ -1,38 +1,33 @@
 "use client"
 
-import { Hero, SearchBar, CustomFilter, CarCard, ShowMore } from '@/components'
-import { fuels, yearsOfProduction } from '@/constants';
-import { fetchCars } from '@/utils'
+import { Hero, SearchBar, CustomFilter, PokemonCard, ShowMore } from '@/components'
+import { filterMountTypes } from '@/constants';
+import { fetchPokemon } from '@/utils'
 import { useEffect, useState } from 'react';
-import { CarState } from "@/types";
 
 import Image from 'next/image';
 
 export default function Home() {
-  const [allCars, setAllCars] = useState<CarState>([])
+  const [allPokemon, setAllPokemon] = useState([])
+  const [allIDs, setAllIDs] = useState([])
   const [loading, setLoading] = useState(false)
-  
-  const [manufacturer, setManufacturer] = useState("")
-  const [model, setModel] = useState("")
 
-  const [fuel, setFuel] = useState("")
-  const [year, setYear] = useState(2022)
+  const [type, setType] = useState('')
+  const [mount, setMount] = useState('')
 
   const [limit, setLimit] = useState(10)
 
-  const getCars = async () => {
+  const getPokemon = async () => {
     setLoading(true);
 
     try {    
-      const result = await fetchCars({
-        manufacturer: manufacturer || '',
-        year: year || 2022,
-        fuel: fuel || '',
-        limit: limit || 10,
-        model: model || '', 
+      const result = await fetchPokemon({
+        type: type || 'ground',
+        mount: mount || 'land',
       });
 
-      setAllCars(result)
+      setAllPokemon(result[0])
+      setAllIDs(result[1])
     } catch (error) {
       console.log(error)
     } finally {
@@ -41,8 +36,8 @@ export default function Home() {
   }
 
   useEffect(() => {
-    getCars()
-  }, [fuel, year, limit, manufacturer, model])
+    getPokemon()
+  }, [type, mount])
 
   return (
     <main className="overflow-hidden">
@@ -57,25 +52,27 @@ export default function Home() {
 
         <div className='home__filters'>
           <SearchBar 
-            setManufacturer={setManufacturer}
-            setModel={setModel}
+            setType={setType}
+            // setModel={setModel}
           />
         </div>
 
         <div className='home__filter-container'>
-          <CustomFilter title="Mount Types" options={fuels} setFilter={setFuel}/>
-          {/* <CustomFilter title="year" options={yearsOfProduction} setFilter={setYear}/> */}
+          <CustomFilter title="Mount Types" options={filterMountTypes} setFilter={setMount}/>
         </div>
 
-        {allCars.length > 0 ? (
+        {allPokemon.length > 0 ? (
           <section>
             <div className='home__cars-wrapper'>
-              {allCars?.map((pokemon, index) => (
-                <CarCard key={`pokemon-${index}`} car={pokemon} />
+              {allPokemon?.map((allPokemon, index) => (
+                <PokemonCard 
+                  key={`pokemon-${index}`} 
+                  pokemonName={allPokemon} 
+                  pokemonID={allIDs[index]} />
               ))}
             </div>
 
-            {loading && (
+            {/* {loading && (
               <div className='flex justify-center pt-10'>
                 <Image 
                   src="/loading.gif"
@@ -89,14 +86,13 @@ export default function Home() {
 
             <ShowMore
               pageNumber={limit / 10}
-              isNext={limit > allCars.length}
+              isNext={limit > allPokemon.length}
               setLimit={setLimit}
-            />
+            /> */}
           </section>
         ) : (
           <div className='home__error-container'>
             <h2 className='text-black text-xl font-bold'>Oops, no results</h2>
-            <p>{allCars?.message}</p>
           </div>
         )}
       </div>

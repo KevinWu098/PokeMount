@@ -1,17 +1,20 @@
 "use client";
 
-import { CarProps } from '@/types';
 import Image from 'next/image';
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react'
+import { PokemonCardProps } from './PokemonCard';
+import { generatePokemonImage } from '@/utils';
 
-interface CarDetailsProps {
+interface PokemonDetailsProps {
     isOpen: boolean;
     closeModal: () => void;
-    car: CarProps;
+    pokemonID: number;
+    pokemonName: string;
+    props: PokemonCardProps
 }
 
-const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
+const PokemonDetails = ({ isOpen, closeModal, props, pokemonID, pokemonName }: PokemonDetailsProps) => {
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
@@ -33,21 +36,28 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                                 </button>
 
                                 <div className="flex-1 flex flex-col gap-3">
-                                    <div className="relative w-full h-40 bg-pattern hue-rotate--232 bg-cover bg-center rounded-lg">
-                                        <Image src="/hero.png" alt='car model' fill priority className='object-contain'/>
+                                    <div className='relative w-full h-40 rounded-lg'>
+                                        <Image src={generatePokemonImage(pokemonID)} alt='car model' fill sizes='100vw' priority className='object-contain z-10'/>
+                                        <div className="relative w-full h-40 bg-pattern hue-rotate--232 bg-cover bg-center rounded-lg"></div>
                                     </div>
                                 </div>
 
                                 <div className="flex-1 flex flex-col gap-2">
                                     <h2 className='font-semibold text-xl capitalize'>
-                                        {car.make} {car.model}
+                                        {pokemonName}
                                     </h2>
 
                                     <div className="mt-3 flex flex-wrap gap-4">
-                                        {Object.entries(car).map(([key, value]) => (
+                                        {Object.entries(props).map(([key, value]) => (
                                             <div className="flex justify-between gap-5 w-full text-right" key={key}>
-                                                <h4 className='text-gray capitalize'>{key.split("_").join(" ")}</h4>
-                                                <p className='text-black-100 font-semibold'>{value}</p>
+                                                <h4 className='text-gray capitalize'>{key.replace(/([a-z])([A-Z])/g, '$1 $2')}</h4>
+                                                <p className='text-black-100 font-semibold'>
+                                                    {typeof(value as string | number) === 'string' 
+                                                        ? (value as string).split(' ')
+                                                                           .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+                                                                           .join(' ') 
+                                                        : value as number}
+                                                </p>
                                             </div>
                                         ))}
                                     </div>
@@ -62,4 +72,4 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
     )
 }
 
-export default CarDetails
+export default PokemonDetails
